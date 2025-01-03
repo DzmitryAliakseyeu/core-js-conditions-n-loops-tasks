@@ -114,8 +114,26 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanSymbols = [
+    { value: 10, symbol: 'X' },
+    { value: 9, symbol: 'IX' },
+    { value: 5, symbol: 'V' },
+    { value: 4, symbol: 'IV' },
+    { value: 1, symbol: 'I' },
+  ];
+
+  let romanN = '';
+  let numCopy = num;
+
+  for (let i = 0; i < romanSymbols.length; i += 1) {
+    while (numCopy >= romanSymbols[i].value) {
+      romanN += romanSymbols[i].symbol;
+      numCopy -= romanSymbols[i].value;
+    }
+  }
+
+  return romanN;
 }
 
 /**
@@ -133,8 +151,57 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let str = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    if (i > 0 && i < numberStr.length) {
+      str += ' ';
+    }
+    switch (numberStr[i]) {
+      case '0':
+        str += 'zero';
+        break;
+      case '1':
+        str += 'one';
+        break;
+      case '2':
+        str += 'two';
+        break;
+      case '3':
+        str += 'three';
+        break;
+      case '4':
+        str += 'four';
+        break;
+      case '5':
+        str += 'five';
+        break;
+      case '6':
+        str += 'six';
+        break;
+      case '7':
+        str += 'seven';
+        break;
+      case '8':
+        str += 'eight';
+        break;
+      case '9':
+        str += 'nine';
+        break;
+      case '.':
+      case ',':
+        str += 'point';
+        break;
+      case '-':
+        str += 'minus';
+        break;
+      default:
+        str += '';
+    }
+  }
+
+  return str;
 }
 
 /**

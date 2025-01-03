@@ -289,8 +289,23 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let totalSum = 0;
+  for (let i = 0; i < arr.length; i += 1) {
+    totalSum += arr[i];
+  }
+
+  let leftSum = 0;
+
+  for (let j = 0; j < arr.length; j += 1) {
+    const rightSum = totalSum - leftSum - arr[j];
+    if (rightSum === leftSum) {
+      return j;
+    }
+
+    leftSum += arr[j];
+  }
+  return -1;
 }
 
 /**
@@ -351,8 +366,19 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  let temp = 0;
+  const arrCopy = arr;
+  for (let i = arrCopy.length; i > 0; i -= 1) {
+    if (arrCopy[i - 1] > arrCopy[i]) {
+      temp = arrCopy[i - 1];
+      arrCopy[i - 1] = arrCopy[i];
+      arrCopy[i] = temp;
+      i = arrCopy.length;
+    }
+  }
+
+  return arrCopy;
 }
 
 /**

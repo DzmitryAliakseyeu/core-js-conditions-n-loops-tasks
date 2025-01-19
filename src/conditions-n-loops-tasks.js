@@ -442,7 +442,6 @@ function sortByAsc(arr) {
     return arC;
   }
 
-  // Partition function for quick sort
   function partition(arr1, left, right) {
     const pivot = arr1[right];
     let i = left - 1;
@@ -487,8 +486,34 @@ function sortByAsc(arr) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  const { length } = str;
+  let strC = str;
+  let result = '';
+  let newStr = '';
+  let odd = '';
+  let even = '';
+
+  for (let i = 0; i < iterations; i += 1) {
+    if (i > 0) {
+      strC = newStr;
+      even = '';
+      odd = '';
+    }
+    for (let j = 0; j < length; j += 1) {
+      if (j % 2 === 0) {
+        even += strC[j];
+      } else {
+        odd += strC[j];
+      }
+
+      newStr = even + odd;
+    }
+
+    result = newStr;
+  }
+
+  return result;
 }
 
 /**
